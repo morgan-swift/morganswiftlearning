@@ -203,7 +203,7 @@ function setSource(i) {
   // The intro shows a still of its calm last frame until played; other stories show their opening frame.
   vid.poster = i === 0 ? "intro-poster.jpg" : "";
   vid.preload = "auto"; // fetch the whole selected story up front so it doesn't stop to buffer
-  vid.src = i === 0 ? s.video : s.video + "#t=0.1"; audio.src = s.audio;
+  vid.src = s.video; audio.src = s.audio; // no "#t=" time jumps: Safari handles plain sources most reliably
   $("slateScene").textContent = pad(i); $("slateOrg").textContent = s.meta.split(" · ").slice(0, 2).join(" · ");
 }
 async function start() {
