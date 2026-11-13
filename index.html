@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Instructional designer Morgan Swift shares learning-design stories from Netflix and Box in an interactive, narrated portfolio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Morgan Swift, Instructional Designer">
+<meta property="og:description" content="Instructional designer Morgan Swift shares learning-design stories from Netflix and Box in an interactive, narrated portfolio.">
+<meta property="og:url" content="https://morganswiftlearning.com/">
+<meta property="og:image" content="https://morganswiftlearning.com/intro-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316213a'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='%23ec9a52'%3EMS%3C/text%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Morgan Swift, Instructional Designer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one screen. A dark "screening room" stage with the avatar video at left; the story picker at right. */
+:root {
+  --bg: #eceff4;
+  --surface: #ffffff;
+  --ink: #16213a;
+  --muted: #5a6479;
+  --faint: #9aa2b3;
+  --rule: #d5dae4;
+  --accent: #c8691f;
+  --accent-soft: #f6e3d0;
+  --accent-ink: #8f4710;
+  --stage: #161d30;
+  --stage-2: #222b45;
+  --stage-ink: #f3f1ec;
+  --stage-muted: #a8b0c4;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1220; --surface: #151c2d; --ink: #e8ebf2; --muted: #9ba4b9; --faint: #5d6780; --rule: #273049;
+  --accent: #ec9a52; --accent-soft: #3a2a1c; --accent-ink: #f6c08e;
+  --stage: #0a0f1c; --stage-2: #18213a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0d1220; --surface: #151c2d; --ink: #e8ebf2; --muted: #9ba4b9; --faint: #5d6780; --rule: #273049;
+  --accent: #ec9a52; --accent-soft: #3a2a1c; --accent-ink: #f6c08e;
+  --stage: #0a0f1c; --stage-2: #18213a; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+
+.app { height: 100%; max-width: 1180px; margin: 0 auto; display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 14px;
+  padding-block: 18px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 20px; }
+.name { font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: clamp(26px, 3.4vw, 38px); line-height: 1; letter-spacing: -0.5px; margin: 0; }
+.role { font-family: var(--font-display); font-weight: 600; color: var(--accent-ink); font-size: 16px; }
+.lede { color: var(--muted); margin: 0; font-size: 14px; }
+
+.main { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; min-height: 0; }
+
+/* Left: stage. The video sets its width from the available height (9:16). */
+.left { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 10px; min-height: 0; }
+.stage { background: radial-gradient(ellipse 70% 60% at 50% 45%, var(--stage-2), var(--stage) 75%); border-radius: 20px; padding: 14px; display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 10px; min-height: 0; position: relative; }
+.slate { display: flex; gap: 6px 12px; align-items: center; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.6px; color: var(--stage-muted); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; contain: inline-size; }
+.slate b { color: var(--stage-ink); font-weight: 500; }
+.rec { width: 8px; height: 8px; border-radius: 50%; background: #e05a47; opacity: .35; flex: none; }
+.stage.playing .rec { opacity: 1; animation: blinkrec 1.4s infinite; }
+@keyframes blinkrec { 50% { opacity: .3; } }
+.screen { position: relative; height: 100%; aspect-ratio: 9 / 16; max-width: 100%; justify-self: center; min-height: 0; }
+#vid { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; background: #b27d44; display: block; box-shadow: 0 16px 36px rgba(0,0,0,.45); }
+.bigplay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #1b1206; border: 0; border-radius: 999px; padding: 12px 22px 12px 16px; font-weight: 700; font-size: 16px; box-shadow: 0 8px 30px rgba(0,0,0,.35); white-space: nowrap; }
+.bigplay svg { width: 20px; height: 20px; }
+
+.transport { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 8px 12px; }
+.ctl { width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--ink); color: var(--surface); display: grid; place-items: center; }
+.ctl svg { width: 17px; height: 17px; }
+.bar { height: 24px; display: flex; align-items: center; cursor: pointer; }
+.track { width: 100%; height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; }
+.fill { height: 100%; width: 0; background: var(--accent); }
+.tc { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Right: story picker */
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 20px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; overflow: hidden; }
+.panel h2 { margin: 0; padding: 12px 16px; font-family: var(--font-mono); font-weight: 500; font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule); }
+.menu { display: flex; flex-direction: column; gap: 6px; padding: 10px; min-height: 0; overflow-y: auto; }
+.story { flex: 1 1 0; min-height: 40px; max-height: 64px; width: 100%; display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left;
+  background: var(--bg); border: 1.5px solid transparent; border-radius: 12px; padding: 4px 12px; position: relative; overflow: hidden; transition: border-color .15s; }
+.story:hover { border-color: var(--accent); }
+.story .prog { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--accent-soft); z-index: 0; }
+.story > :not(.prog) { position: relative; z-index: 1; min-width: 0; }
+.story .n { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+.story .t { display: block; font-family: var(--font-display); font-weight: 700; font-size: 14.5px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.story .m { display: block; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.story .d { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.story .d .ok { color: var(--accent); font-weight: 700; }
+.story.start { background: var(--ink); color: var(--surface); }
+.story.start .n, .story.start .m, .story.start .d { color: var(--faint); }
+.story.start .prog { background: rgba(255,255,255,.12); }
+.story.learn { background: var(--accent-soft); border-color: var(--accent); }
+.story.learn .t { color: var(--accent-ink); }
+.story[aria-current="true"] { border-color: var(--accent); }
+.eq { display: inline-flex; gap: 2px; align-items: flex-end; height: 12px; vertical-align: -1px; margin-right: 4px; }
+.eq i { width: 3px; background: var(--accent); border-radius: 1px; animation: eq .9s ease-in-out infinite; }
+.eq i:nth-child(2) { animation-delay: -.3s; } .eq i:nth-child(3) { animation-delay: -.6s; }
+@keyframes eq { 0%,100% { height: 3px; } 50% { height: 12px; } }
+
+.links { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--rule); }
+.link { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--rule); background: transparent; border-radius: 999px; padding: 5px 12px; font-weight: 600; font-size: 13px; text-decoration: none; white-space: nowrap; }
+.link:hover { border-color: var(--accent); }
+.link.primary { background: var(--accent); border-color: var(--accent); color: #1b1206; }
+.email { font-family: var(--font-mono); font-size: 13px; color: var(--ink); user-select: all; margin-left: 4px; }
+.note { flex-basis: 100%; font-size: 12.5px; color: var(--muted); }
+
+@media (max-height: 760px) and (min-width: 881px) { .story .m { display: none; } .story { min-height: 34px; } .app { padding-block: 12px; gap: 10px; } .lede { display: none; } }
+@media (max-width: 880px) {
+  html, body { height: auto; }
+  .app { height: auto; }
+  .main { grid-template-columns: minmax(0, 1fr); }
+  .stage { grid-template-rows: auto auto; }
+  .screen { height: auto; width: min(300px, 80%); }
+  .story { flex: none; min-height: 52px; }
+  .menu { overflow: visible; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="app">
+  <header>
+    <div>
+      <h1 class="name">Morgan Swift</h1>
+      <div class="role">Instructional Designer · Learning Experience Design</div>
+    </div>
+    <p class="lede">Pick a story and I'll tell it in my own voice. Each runs under a minute.</p>
+  </header>
+
+  <section class="main" aria-label="Career stories">
+    <div class="left">
+      <div class="stage" id="stage">
+        <div class="slate" aria-hidden="true"><span class="rec"></span><span>Scene <b id="slateScene">00</b></span><span id="slateOrg">Meet Morgan</span></div>
+        <div class="screen">
+          <video id="vid" playsinline preload="metadata"></video>
+          <button class="bigplay" id="bigPlay" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Meet Morgan</button>
+        </div>
+      </div>
+      <div class="transport">
+        <button class="ctl" id="play" type="button" aria-label="Play"><svg viewBox="0 0 24 24" fill="currentColor" id="playIcon"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="bar" id="bar" role="slider" aria-label="Story progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><div class="track"><div class="fill" id="fill"></div></div></div>
+        <span class="tc" id="tc">0:00 / 0:00</span>
+      </div>
+    </div>
+
+    <nav class="panel" aria-label="Stories">
+      <h2>Choose a story · start anywhere</h2>
+      <div class="menu" id="menu"></div>
+      <div class="links">
+        <button class="link primary" id="resumeBtn" type="button">↓ Resume</button>
+        <a class="link" href="https://www.linkedin.com/in/morgan-swift/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="link" href="https://youtube.com/playlist?list=PLbCz9GgTkkVg&amp;si=TJ4phtjYbZmU_Zvb" target="_blank" rel="noopener">Netflix videos ↗</a>
+        <span class="email" id="email">morganswift@gmail.com</span>
+        <span class="note" id="resumeNote" hidden></span>
+      </div>
+    </nav>
+  </section>
+</div>
+
+<script>
+const SCENES = [{"button": "Meet Morgan", "meta": "Start here · Why a Hollywood background", "title": "From the edit bay to instructional design", "tag": "Why me", "script": "Hi, I'm Morgan Swift. Thanks for stopping by. Over the last twenty years I've held a few careers, mostly in media and entertainment. I started in TV post-production on more than a hundred episodes, moved into account management and sales leadership, then spent the last five years at Netflix and Box helping people actually adopt new tools. Through all of it, people have come to me for the same thing: taking something complicated and making it make sense for any audience. That's instructional design. I picked seven projects from my career I'd love to highlight for you. Click on the scene that sounds most interesting to you.", "metrics": ["19 years in media & entertainment", "100+ TV episodes delivered", "25+ app rollouts trained at Netflix", "In-person training on 3 continents"], "dur": 34.5, "video": "video/scene-0.mp4", "audio": "audio/scene-0.mp3"}, {"button": "Why L&D", "meta": "Career pivot · Why I'm here", "title": "Why learning and development", "tag": "Why I'm here", "script": "So why learning and development? For most of my career, I was on the revenue side. I've been a Director of Account Management and a Director of Sales, where I managed teams and built the sales process from the ground up. I liked that work, but this is a deliberate pivot away from carrying a quota. What changed it for me was Netflix. My job was getting Animation, VFX and Production teams to actually use new tools, and it required some complicated change management, globally. I found I have a talent for explaining complicated ideas and meeting people where they are. I kept going at Box, building Box 101 and 201 and helping customers get started with AI. I've found that my skill set and interests align well with a variety of modalities such as instructor-led, video, and eLearning, and I'm looking forward to learning more and continuing to improve.", "metrics": ["~20 years in media tech", "2 Director roles in sales & account management", "5 years of training & adoption at Netflix and Box", "ADKAR change management"], "dur": 48.17, "video": "video/scene-9.mp4", "audio": "audio/scene-9.mp3"}, {"button": "Behind the Streams", "meta": "Netflix · 2023–2025 · Experiential, gamified ILT", "title": "Behind the Streams", "tag": "Experiential, gamified ILT", "script": "At Netflix, the engineers building our studio tools told me they had a real gap: they didn't understand how Hollywood makes movies. One option was an eLearning, but I pitched something different: a full-day, immersive course where engineers make a movie. Teams got a budget to green-light a pitched title, negotiated with me as I played a talent agent, then played their way through budgeting, production, post, VFX and marketing. At the end, they found out how the real title performed on service. I proved it with a pilot, then ran about twenty sessions over two years for roughly three hundred engineers. Engineers with more than a decade at Netflix finally understood what they were building, and I was asked to take the course to Mexico City and London.", "needed": "Engineers building studio tools didn't understand how a production works end to end, which made gathering requirements harder.", "designed": "A full-day immersive course: teams green-light a title, negotiate with talent, then play through budgeting, production, post, VFX and marketing. Proved with a pilot first.", "changed": "Engineers with 10+ years at Netflix finally understood what they were building. I was asked to take it to Mexico City and London.", "metrics": ["~300 engineers trained", "~20 sessions over 2 years", "8-hour instructor-led format", "LA, Mexico City, London"], "dur": 43.37, "video": "video/scene-1.mp4", "audio": "audio/scene-1.mp3"}, {"button": "Localized eLearnings for Japan, Korea & Thailand", "meta": "Netflix · 2024 · Needs analysis & localization", "title": "Localized eLearnings for Japan, Korea and Thailand", "tag": "Needs analysis & localization", "script": "Netflix built a tool to track the cost of every VFX shot with data from tens of thousands of shots over four years, but teams in Japan, Korea and Thailand had not adopted it. They already had processes that worked, and Netflix doesn't mandate process. So I flew out to their offices and listened first. In Japan, shows often don't run in the same seasons as in Hollywood. In Korea, teams lived in advanced Google Sheets and created their own advanced trackers. I came back and built eight eLearnings, one for production users and one for studio users in English, Japanese, Korean and Thai, with each region's real workflow built in, not just translated. The data showed the courses were popular, and the tool is still in use today in all three regions.", "needed": "Teams in Japan, Korea and Thailand already had processes that worked, and Netflix doesn't mandate process.", "designed": "I listened on-site first, then built role-based eLearnings in Articulate Storyline for production and studio users, in four languages, with each region's real workflow built in.", "changed": "Korea adopted first, then Japan and Thailand. LMS data showed strong engagement, and the tool is still in use.", "metrics": ["8 eLearnings", "4 languages", "2 learner roles", "3 regions adopted"], "dur": 44.27, "video": "video/scene-2.mp4", "audio": "audio/scene-2.mp3"}, {"button": "Just-in-time onboarding for new CSMs", "meta": "Box · 2025 · Just-in-time learning with AI", "title": "Just-in-time onboarding for new CSMs", "tag": "Just-in-time learning with AI", "script": "When I joined Box, I gave honest feedback on the onboarding eLearnings, and the training team asked me to help fix them. My big idea: stop trying to teach new hires everything. It overwhelms people, and most of it doesn't stick. Instead, teach what they need on day one, then teach them how to find the rest. In a one-hour instructor-led session, I showed new Customer Success Managers how to use AI to search our SOPs and get answers in the moment, just in time. I led those sessions every month for about a dozen new hires. They ramped up with more confidence, and the process is still in use today.", "needed": "New Customer Success Managers were trying to learn everything up front. It overwhelmed them, and most of it didn't stick.", "designed": "A one-hour instructor-led session that teaches only the day-one essentials, plus how to use AI to search SOPs for answers in the moment.", "changed": "About a dozen new CSMs ramped up with more confidence, and the process is still in use today.", "metrics": ["~12 new CSMs onboarded", "1-hour ILT", "Nationwide program", "Still in use"], "dur": 35.47, "video": "video/scene-3.mp4", "audio": "audio/scene-3.mp3"}, {"button": "Box 101 & 201 for The TEAM", "meta": "Box · 2026 · Audience-tailored ILT", "title": "Box 101 & 201 for The TEAM", "tag": "Audience-tailored ILT", "script": "The TEAM, a talent agency and one of Box's oldest customers, had just bought Box's top tier, with AI agents and automations, and their SVP of IT asked me to train their people. I split it into Box 101 for the basics and 201 for the advanced features. Instead of a generic demo, I built it around their world: I role played as Maxx Crosby's agent, with a demo account full of sponsorships and press. After the training, I ran a three-hour help desk over lunch and debriefed with IT. They added my recording to their LMS, had me repeat the program for their East Coast and London teams, and went from having launched just two AI agents to a growing backlog of more than fifty requests from excited users.", "needed": "A long-time customer bought Box's top tier, with AI agents and automations, and their people needed to actually use it.", "designed": "Box 101 for the basics and 201 for AI agents and automations, built around a role-play demo as Maxx Crosby's agent, then a 3-hour help desk and an IT debrief.", "changed": "My recording went into their LMS, they had me repeat it for East Coast and London, and AI agents went from 2 to a backlog of 50+ requests.", "metrics": ["2 → 50+ AI agent requests", "Added to client LMS", "3 offices trained", "2-hr ILT + 3-hr help desk"], "dur": 41.93, "video": "video/scene-4.mp4", "audio": "audio/scene-4.mp3"}, {"button": "Rolling out the red carpet for Workshop Portal", "meta": "Netflix · 2022 · Launch experience", "title": "Rolling out the red carpet for Workshop Portal", "tag": "Launch experience", "script": "At Netflix Animation, we built Workshop Portal, the new home for artists to submit work for review and approval, and a cornerstone that future tools would be built on. A launch that important needed more than an email, so I threw a launch party. I set up hands-on demo stations where artists met the engineers who built the tool, catered it, and timed it with a screening of Guillermo del Toro's Pinocchio. About a hundred people came, leadership loved it, and new productions adopted Workshop Portal strongly, with some shows already in production switching over too. This party showed me that adoption is a funnel that starts with awareness.", "needed": "A cornerstone review-and-approval app for Netflix Animation artists needed a launch that matched its importance.", "designed": "A launch event with hands-on demo stations where artists met the engineers, timed with a screening of Guillermo del Toro's Pinocchio.", "changed": "About 100 people came, leadership loved it, and new productions adopted strongly, with in-flight shows switching over too.", "metrics": ["~100 attendees", "Hands-on demo stations", "Strong adoption by new productions"], "dur": 36.27, "video": "video/scene-5.mp4", "audio": "audio/scene-5.mp3"}, {"button": "Closing the feedback loop with UserVoice", "meta": "Netflix · 2024 · Feedback loops at scale", "title": "Closing the feedback loop with UserVoice", "tag": "Feedback loops at scale", "script": "Across Netflix's studio apps, every product manager collected feedback differently, and nobody closed the loop with users. As the lead for UserVoice, I worked with more than a dozen product managers over six months to standardize it and roll it out. We landed on four different paths for integrations that covered all applications, and I tracked every rollout along the way in Monday.com. In the first year, we captured more than three thousand pieces of user feedback, and teams shifted from building what they assumed users wanted to building what users actually voted for. Also, this feedback easily highlighted training gaps which we fixed with Job Aids and WalkMe.", "needed": "Every product manager collected feedback differently, and users never heard back about their requests.", "designed": "Standardized feedback across studio apps with 12+ product managers, using four integration patterns, and tracked every rollout.", "changed": "3,000+ pieces of feedback in year one. Roadmaps shifted to what users voted for, and the feedback exposed training gaps we closed with job aids and WalkMe.", "metrics": ["3,000+ pieces of feedback", "12+ product teams", "6-month rollout", "Training gaps fixed with job aids & WalkMe"], "dur": 37.47, "video": "video/scene-6.mp4", "audio": "audio/scene-6.mp3"}, {"button": "Getting Hollywood studios to say yes to AI", "meta": "Box · 2025–2026 · User research & change management", "title": "Getting Hollywood studios to say yes to AI", "tag": "User research & change management", "script": "In Hollywood, AI is a loaded word. At Box, AI features only turned on after a customer signed an AI addendum, and every studio's legal and security teams worried about content leaks and training on their data. So I didn't lead with security. I led with the users. I ran user interviews, more than thirty at Amazon MGM Studios alone, and built a library of real use cases. When I sat down with the heads of legal and InfoSec, I was showing them what their own people were asking for. Warner Bros., Amazon MGM Studios, Sony Pictures, The TEAM and UTA all signed, starting with careful pilot rollouts.", "needed": "Studios saw AI as a risk to their content and data, and legal and InfoSec had to sign off before anyone could use it.", "designed": "I led with demand: 30+ user interviews at Amazon MGM Studios and a library of real use cases, before I ever met with legal and InfoSec.", "changed": "Warner Bros., Amazon MGM Studios, Sony Pictures, The TEAM and UTA all signed, starting with phased pilots of under 50 users.", "metrics": ["5 studios & agencies signed", "30+ user interviews", "Phased pilots (<50 users)"], "dur": 38.5, "video": "video/scene-7.mp4", "audio": "audio/scene-7.mp3"}, {"button": "Teaching with video", "meta": "Post-production · Netflix · Video production", "title": "Teaching with video", "tag": "Video production", "youtube": true, "script": "Video is where my career started. I spent my early years in TV post-production on more than a hundred episodes, and I even ran a website teaching Final Cut Pro workflows to editors around the world. At Netflix, I put that to work. I made dozens of videos, some to train people on new tools step by step, and some to build excitement before a launch. I'm comfortable on either side of the camera: writing, shooting, editing or presenting. And I'm excited about what AI is doing for video. You're watching an example right now. This avatar and my voice are AI generated, so I can make updates in minutes instead of reshooting it, which was a big problem for me at Netflix. You'll find some of my Netflix videos on YouTube, linked right below.", "metrics": ["100+ TV episodes in post-production", "Dozens of training & launch videos at Netflix", "Founded a Final Cut Pro training site", "Comfortable on camera and behind it"], "dur": 42.0, "video": "video/scene-8.mp4", "audio": "audio/scene-8.mp3"}, {"button": "Learn more", "meta": "Resume · LinkedIn · Netflix videos", "title": "Let's keep talking", "tag": "", "script": "Thanks for checking this out! You can download my resume, connect with me on LinkedIn, or email me right below. I'm also including a link to some of the videos I created while at Netflix. Thanks for watching, and I hope you and the real me get to talk soon.", "dur": 13.37, "video": "video/scene-10.mp4", "audio": "audio/scene-10.mp3"}];
+const RESUME = "Morgan_Swift_Resume_Instructional_Designer.pdf";
+const $ = (id) => document.getElementById(id);
+const pad = (n) => String(n).padStart(2, "0");
+const fmt = (s) => `${Math.floor(s / 60)}:${pad(Math.floor(s % 60))}`;
+const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const LEARN = SCENES.length - 1;
+const vid = $("vid");
+const audio = new Audio(); audio.preload = "none";
+let cur = 0, playing = false, useAudio = false, done = new Set();
+const media = () => (useAudio ? audio : vid);
+
+function renderMenu() {
+  $("menu").innerHTML = SCENES.map((s, i) => {
+    const cls = i === 0 ? "story start" : i === LEARN ? "story learn" : "story";
+    const n = i === 0 ? "▶" : i === LEARN ? "→" : pad(i);
+    const live = i === cur && playing ? '<span class="eq"><i></i><i></i><i></i></span>' : "";
+    const d = `${done.has(i) ? '<span class="ok">✓</span> ' : ""}${fmt(s.dur || 40)}`;
+    return `<button class="${cls}" type="button" data-i="${i}" ${i === cur ? 'aria-current="true"' : ""}><span class="prog"></span><span class="n">${n}</span><span><span class="t">${live}${esc(s.button)}</span><span class="m">${esc(s.meta)}</span></span><span class="d">${d}</span></button>`;
+  }).join("");
+}
+$("menu").addEventListener("click", (e) => { const b = e.target.closest(".story"); if (b) go(+b.dataset.i); });
+
+function setSource(i) {
+  const s = SCENES[i];
+  // The intro shows a still of its calm last frame until played; other stories show their opening frame.
+  vid.poster = i === 0 ? "intro-poster.jpg" : "";
+  vid.src = i === 0 ? s.video : s.video + "#t=0.1"; audio.src = s.audio;
+  $("slateScene").textContent = pad(i); $("slateOrg").textContent = s.meta.split(" · ").slice(0, 2).join(" · ");
+}
+async function start() {
+  $("bigPlay").hidden = true; playing = true; updateUI();
+  const m = media();
+  try { await m.play(); }
+  catch (e) { if (!useAudio) { useAudio = true; try { await audio.play(); } catch (_) { playing = false; updateUI(); } } else { playing = false; updateUI(); } }
+}
+function pause() { playing = false; media().pause(); updateUI(); }
+function go(i) {
+  vid.pause(); audio.pause(); cur = i; setSource(i); start();
+}
+function ended() { playing = false; done.add(cur); updateUI(); }
+vid.addEventListener("ended", ended); audio.addEventListener("ended", ended);
+vid.addEventListener("error", () => { if (!useAudio && vid.currentSrc) useAudio = true; });
+
+function updateUI() {
+  $("stage").classList.toggle("playing", playing);
+  $("play").setAttribute("aria-label", playing ? "Pause" : "Play");
+  $("playIcon").innerHTML = playing ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+  renderMenu();
+}
+function tick() {
+  const m = media(), d = m.duration || SCENES[cur].dur || 0, t = m.currentTime || 0, p = d ? Math.min(1, t / d) : 0;
+  $("fill").style.width = `${p * 100}%`; $("bar").setAttribute("aria-valuenow", Math.round(p * 100));
+  $("tc").textContent = `${fmt(t)} / ${fmt(d)}`;
+  const pr = document.querySelector('.story[aria-current="true"] .prog'); if (pr) pr.style.width = `${p * 100}%`;
+  requestAnimationFrame(tick);
+}
+$("bigPlay").onclick = () => start();
+$("play").onclick = () => (playing ? pause() : start());
+function seek(f) { const m = media(); if (m.duration) m.currentTime = Math.max(0, Math.min(1, f)) * m.duration; }
+$("bar").addEventListener("click", (e) => { const r = $("bar").getBoundingClientRect(); seek((e.clientX - r.left) / r.width); });
+$("bar").addEventListener("keydown", (e) => { const m = media(); if (!m.duration) return; const step = 5 / m.duration, p = m.currentTime / m.duration;
+  if (e.key === "ArrowRight") { seek(p + step); e.preventDefault(); } if (e.key === "ArrowLeft") { seek(p - step); e.preventDefault(); } });
+
+let downloads = null;
+(async () => { try { downloads = await window.claude?.use?.("downloads"); } catch (e) { downloads = null; } })();
+$("resumeBtn").onclick = async () => { const note = $("resumeNote");
+  if (!window.claude) { // on the public website: a normal file download
+    const a = document.createElement("a"); a.href = RESUME; a.download = RESUME; document.body.appendChild(a); a.click(); a.remove(); return; }
+  if (!downloads) { note.hidden = false; note.textContent = "Downloads aren't available in this view. Email me and I'll send my resume right away."; return; }
+  try { const blob = await (await fetch(RESUME)).blob(); await downloads.save({ filename: RESUME, data: blob }); note.hidden = true; }
+  catch (e) { if (e && e.code === "declined") return; note.hidden = false; note.textContent = "The download didn't start. Email me and I'll send my resume right away."; } };
+
+setSource(0); renderMenu(); requestAnimationFrame(tick);
+</script>
+
+</body>
+</html>
