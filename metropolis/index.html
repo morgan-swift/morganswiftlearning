@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="../">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Morgan Swift's interactive learning-design portfolio, prepared for the Metropolis team.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Morgan Swift for Metropolis">
+<meta property="og:description" content="Morgan Swift's interactive learning-design portfolio, prepared for the Metropolis team.">
+<meta property="og:url" content="https://morgan-swift.github.io/morganswiftlearning/metropolis/">
+<meta property="og:image" content="https://morgan-swift.github.io/morganswiftlearning/intro-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316213a'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='%23ec9a52'%3EMS%3C/text%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Morgan Swift for Metropolis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one screen. A dark "screening room" stage with the avatar video at left; the story picker at right. */
+:root {
+  --bg: #eceff4;
+  --surface: #ffffff;
+  --ink: #16213a;
+  --muted: #5a6479;
+  --faint: #9aa2b3;
+  --rule: #d5dae4;
+  --accent: #c8691f;
+  --accent-soft: #f6e3d0;
+  --accent-ink: #8f4710;
+  --stage: #161d30;
+  --stage-2: #222b45;
+  --stage-ink: #f3f1ec;
+  --stage-muted: #a8b0c4;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1220; --surface: #151c2d; --ink: #e8ebf2; --muted: #9ba4b9; --faint: #5d6780; --rule: #273049;
+  --accent: #ec9a52; --accent-soft: #3a2a1c; --accent-ink: #f6c08e;
+  --stage: #0a0f1c; --stage-2: #18213a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0d1220; --surface: #151c2d; --ink: #e8ebf2; --muted: #9ba4b9; --faint: #5d6780; --rule: #273049;
+  --accent: #ec9a52; --accent-soft: #3a2a1c; --accent-ink: #f6c08e;
+  --stage: #0a0f1c; --stage-2: #18213a; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+
+.app { height: 100%; max-width: 1180px; margin: 0 auto; display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 14px;
+  padding-block: 18px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 20px; }
+.name { font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: clamp(26px, 3.4vw, 38px); line-height: 1; letter-spacing: -0.5px; margin: 0; }
+.role { font-family: var(--font-display); font-weight: 600; color: var(--accent-ink); font-size: 16px; }
+.lede { color: var(--muted); margin: 0; font-size: 14px; }
+
+.main { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; min-height: 0; }
+
+/* Left: stage. The video sets its width from the available height (9:16). */
+.left { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 10px; min-height: 0; }
+.stage { background: radial-gradient(ellipse 70% 60% at 50% 45%, var(--stage-2), var(--stage) 75%); border-radius: 20px; padding: 14px; display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 10px; min-height: 0; position: relative; }
+.slate { display: flex; gap: 6px 12px; align-items: center; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.6px; color: var(--stage-muted); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; contain: inline-size; }
+.slate b { color: var(--stage-ink); font-weight: 500; }
+.rec { width: 8px; height: 8px; border-radius: 50%; background: #e05a47; opacity: .35; flex: none; }
+.stage.playing .rec { opacity: 1; animation: blinkrec 1.4s infinite; }
+@keyframes blinkrec { 50% { opacity: .3; } }
+.screen { position: relative; height: 100%; aspect-ratio: 9 / 16; max-width: 100%; justify-self: center; min-height: 0; }
+#vid { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; background: #b27d44; display: block; box-shadow: 0 16px 36px rgba(0,0,0,.45); }
+.bigplay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #1b1206; border: 0; border-radius: 999px; padding: 12px 22px 12px 16px; font-weight: 700; font-size: 16px; box-shadow: 0 8px 30px rgba(0,0,0,.35); white-space: nowrap; }
+.bigplay svg { width: 20px; height: 20px; }
+.loading { position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; background: rgba(0,0,0,.6); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 600; }
+.spin { width: 12px; height: 12px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.transport { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 8px 12px; }
+.ctl { width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--ink); color: var(--surface); display: grid; place-items: center; }
+.ctl svg { width: 17px; height: 17px; }
+.bar { height: 24px; display: flex; align-items: center; cursor: pointer; }
+.track { width: 100%; height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; }
+.fill { height: 100%; width: 0; background: var(--accent); }
+.tc { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Right: story picker */
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 20px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; overflow: hidden; }
+.panel h2 { margin: 0; padding: 12px 16px; font-family: var(--font-mono); font-weight: 500; font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule); }
+.menu { display: flex; flex-direction: column; gap: 6px; padding: 10px; min-height: 0; overflow-y: auto; }
+.story { flex: 1 1 0; min-height: 40px; max-height: 64px; width: 100%; display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left;
+  background: var(--bg); border: 1.5px solid transparent; border-radius: 12px; padding: 4px 12px; position: relative; overflow: hidden; transition: border-color .15s; }
+.story:hover { border-color: var(--accent); }
+.story .prog { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--accent-soft); z-index: 0; }
+.story > :not(.prog) { position: relative; z-index: 1; min-width: 0; }
+.story .n { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+.story .t { display: block; font-family: var(--font-display); font-weight: 700; font-size: 14.5px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.story .m { display: block; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.story .d { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.story .d .ok { color: var(--accent); font-weight: 700; }
+.story.start { background: var(--ink); color: var(--surface); }
+.story.start .n, .story.start .m, .story.start .d { color: var(--faint); }
+.story.start .prog { background: rgba(255,255,255,.12); }
+.story.learn { background: var(--accent-soft); border-color: var(--accent); }
+.story.learn .t { color: var(--accent-ink); }
+.story[aria-current="true"] { border-color: var(--accent); }
+.eq { display: inline-flex; gap: 2px; align-items: flex-end; height: 12px; vertical-align: -1px; margin-right: 4px; }
+.eq i { width: 3px; background: var(--accent); border-radius: 1px; animation: eq .9s ease-in-out infinite; }
+.eq i:nth-child(2) { animation-delay: -.3s; } .eq i:nth-child(3) { animation-delay: -.6s; }
+@keyframes eq { 0%,100% { height: 3px; } 50% { height: 12px; } }
+
+.links { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding: 10px 12px; border-top: 1px solid var(--rule); }
+.link { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--rule); background: transparent; border-radius: 999px; padding: 5px 12px; font-weight: 600; font-size: 13px; text-decoration: none; white-space: nowrap; }
+.link:hover { border-color: var(--accent); }
+.link.primary { background: var(--accent); border-color: var(--accent); color: #1b1206; }
+.email { font-family: var(--font-mono); font-size: 13px; color: var(--ink); user-select: all; margin-left: 4px; }
+.note { flex-basis: 100%; font-size: 12.5px; color: var(--muted); }
+
+@media (max-height: 760px) and (min-width: 881px) { .story .m { display: none; } .story { min-height: 34px; } .app { padding-block: 12px; gap: 10px; } .lede { display: none; } }
+@media (max-width: 880px) {
+  html, body { height: auto; }
+  .app { height: auto; }
+  .main { grid-template-columns: minmax(0, 1fr); }
+  .stage { grid-template-rows: auto auto; }
+  .screen { height: auto; width: min(300px, 80%); }
+  .story { flex: none; min-height: 52px; }
+  .menu { overflow: visible; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+<style>
+/* Metropolis-inspired theme: white space, deep navy stage, signature violet accent, light-weight grotesk headline.
+   One committed light look (brand), so the tokens are pinned for every viewer theme. */
+html:root:not(.v1):not(.v2) {
+  --bg: #ffffff; --surface: #ffffff; --ink: #1a1a2d; --muted: #5d5d73; --faint: #a3a3b5; --rule: #e4e3ef;
+  --accent: #5e59ff; --accent-soft: #f1f0ff; --accent-ink: #2d23a7;
+  --stage: #02003b; --stage-2: #13005f; --stage-ink: #ffffff; --stage-muted: #bcb9ff;
+  --font-display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+body { background: var(--bg); color: var(--ink); }
+.name { font-weight: 300; font-stretch: normal; letter-spacing: -1.2px; font-size: clamp(30px, 4vw, 46px); }
+.role { color: var(--accent); font-weight: 500; letter-spacing: -0.1px; }
+.lede { color: var(--muted); max-width: 52ch; }
+.for-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-soft); color: var(--accent-ink);
+  border-radius: 999px; padding: 5px 12px; font-size: 12.5px; font-weight: 600; font-family: var(--font-body); }
+.for-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.stage { background: radial-gradient(ellipse 75% 60% at 50% 38%, #2d23a7 0%, #13005f 48%, #02003b 100%); }
+#vid { background: #13005f; }
+.panel { border-color: var(--rule); box-shadow: 0 1px 2px rgba(26, 26, 45, .05); }
+.panel h2 { color: var(--accent-ink); }
+.story { background: #f5f5f8; border-radius: 14px; }
+.story:hover, .story[aria-current="true"] { border-color: var(--accent); }
+.story .prog { background: var(--accent-soft); }
+.story.start { background: var(--ink); }
+.story.learn { background: var(--accent-soft); border-color: var(--accent); }
+.story.learn .t { color: var(--accent-ink); }
+.story .d .ok { color: var(--accent); }
+.eq i, .fill { background: var(--accent); }
+.link { border-radius: 999px; }
+.link:hover { border-color: var(--accent); }
+.link.primary, .bigplay { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+.ctl { background: var(--ink); color: #ffffff; }
+.transport { border-color: var(--rule); }
+.email { color: var(--ink); }
+:focus-visible { outline-color: var(--accent); }
+
+
+/* "Made using" tool logos, left of the badge */
+.credits { flex-basis: 100%; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px 16px; }
+.made-using { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.made-using .tool { display: inline-flex; padding: 3px; margin: -3px; border-radius: 6px; transition: transform .15s; }
+.made-using .tool:hover { transform: translateY(-1px); background: var(--accent-soft); }
+.made-using svg, .made-using img { width: 17px; height: 17px; display: block; }
+
+</style>
+
+<div class="app">
+  <header>
+    <div>
+      <h1 class="name">Morgan Swift</h1>
+      <div class="role">Learning Experience Designer</div>
+    </div>
+    
+  </header>
+
+  <section class="main" aria-label="Career stories">
+    <div class="left">
+      <div class="stage" id="stage">
+        <div class="slate" aria-hidden="true"><span class="rec"></span><span>Scene <b id="slateScene">00</b></span><span id="slateOrg">Meet Morgan</span></div>
+        <div class="screen">
+          <video id="vid" playsinline preload="auto"></video>
+          <div class="loading" id="loading" hidden><span class="spin"></span>Loading…</div>
+          <button class="bigplay" id="bigPlay" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Meet Morgan</button>
+        </div>
+      </div>
+      <div class="transport">
+        <button class="ctl" id="play" type="button" aria-label="Play"><svg viewBox="0 0 24 24" fill="currentColor" id="playIcon"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="bar" id="bar" role="slider" aria-label="Story progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><div class="track"><div class="fill" id="fill"></div></div></div>
+        <span class="tc" id="tc">0:00 / 0:00</span>
+      </div>
+    </div>
+
+    <nav class="panel" aria-label="Stories">
+      <h2>Choose a story · start anywhere</h2>
+      <div class="menu" id="menu"></div>
+      <div class="links">
+        <button class="link primary" id="resumeBtn" type="button">↓ Resume</button>
+        <a class="link" href="https://www.linkedin.com/in/morgan-swift/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="link" href="https://youtube.com/playlist?list=PLbCz9GgTkkVg&amp;si=TJ4phtjYbZmU_Zvb" target="_blank" rel="noopener">Netflix videos ↗</a>
+        <span class="email" id="email">morganswift@gmail.com</span>
+        <div class="credits"><div class="made-using"><span>Made using</span><a class="tool" href="https://claude.ai" target="_blank" rel="noopener" title="Claude" aria-label="Claude (opens in a new tab)"><svg fill="#D97757" aria-hidden="true" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Claude</title><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></a><a class="tool" href="https://github.com" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub (opens in a new tab)"><svg fill="#181717" aria-hidden="true" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a class="tool" href="https://elevenlabs.io" target="_blank" rel="noopener" title="ElevenLabs" aria-label="ElevenLabs (opens in a new tab)"><svg fill="#000000" aria-hidden="true" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>ElevenLabs</title><path d="M4.6035 0v24h4.9317V0zm9.8613 0v24h4.9317V0z"/></svg></a><a class="tool" href="https://www.heygen.com" target="_blank" rel="noopener" title="HeyGen" aria-label="HeyGen (opens in a new tab)"><img src="data:image/png;base64,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" alt="" aria-hidden="true"></a></div>
+        <div class="for-badge">Prepared for the Metropolis team</div></div>
+        <span class="note" id="resumeNote" hidden></span>
+      </div>
+    </nav>
+  </section>
+</div>
+
+<script>
+const SCENES = [{"button": "Meet Morgan", "meta": "Start here · Why a Hollywood background", "title": "From the edit bay to instructional design", "tag": "Why me", "script": "Hi Metropolis team, I'm Morgan Swift. Thanks for taking a look. Over the last twenty years I've held a few careers, mostly in media and entertainment: TV post-production, then sales leadership, then five years at Netflix and Box helping people actually adopt new tools. Through all of it, people have come to me for the same thing: taking something complicated and making it click for any audience. That's what I'd love to do as your Learning Experience Designer. Pick any story to learn more about me.", "metrics": ["19 years in media & entertainment", "100+ TV episodes delivered", "25+ app rollouts trained at Netflix", "In-person training on 3 continents"], "dur": 28.1, "video": "metropolis/scene-0-metropolis.mp4?v=9746db61", "audio": "metropolis/scene-0-metropolis.mp3?v=dda855de"}, {"button": "Why L&D", "meta": "Career pivot · Why I'm here", "title": "Why learning and development", "tag": "Why I'm here", "script": "So why learning and development? For most of my career, I was on the revenue side. I've been a Director of Account Management and a Director of Sales, where I managed teams and built the sales process from the ground up. I liked that work, but this is a deliberate pivot away from carrying a quota. What changed it for me was Netflix. My job was getting Animation, VFX and Production teams to actually use new tools, and it required some complicated change management, globally. I found I have a talent for explaining complicated ideas and meeting people where they are. I kept going at Box, building Box 101 and 201 and helping customers get started with AI. I've found that my skill set and interests align well with a variety of modalities such as instructor-led, video, and eLearning, and I'm looking forward to learning more and continuing to improve.", "metrics": ["~20 years in media tech", "2 Director roles in sales & account management", "5 years of training & adoption at Netflix and Box", "ADKAR change management"], "dur": 48.17, "video": "video/scene-9.mp4?v=b57be01c", "audio": "audio/scene-9.mp3?v=000b77d0"}, {"button": "Behind the Streams", "meta": "Netflix · 2023–2025 · Experiential, gamified ILT", "title": "Behind the Streams", "tag": "Experiential, gamified ILT", "script": "At Netflix, the engineers building our studio tools told me they had a real gap: they didn't understand how Hollywood makes movies. One option was an eLearning, but I pitched something different: a full-day, immersive course where engineers make a movie. Teams got a budget to green-light a pitched title, negotiated with me as I played a talent agent, then played their way through budgeting, production, post, VFX and marketing. At the end, they found out how the real title performed on service. I proved it with a pilot, then ran about twenty sessions over two years for roughly three hundred engineers. Engineers with more than a decade at Netflix finally understood what they were building, and I was asked to take the course to Mexico City and London.", "needed": "Engineers building studio tools didn't understand how a production works end to end, which made gathering requirements harder.", "designed": "A full-day immersive course: teams green-light a title, negotiate with talent, then play through budgeting, production, post, VFX and marketing. Proved with a pilot first.", "changed": "Engineers with 10+ years at Netflix finally understood what they were building. I was asked to take it to Mexico City and London.", "metrics": ["~300 engineers trained", "~20 sessions over 2 years", "8-hour instructor-led format", "LA, Mexico City, London"], "dur": 43.37, "video": "video/scene-1.mp4?v=f2afcef1", "audio": "audio/scene-1.mp3?v=9d677bed"}, {"button": "Localized eLearnings for Japan, Korea & Thailand", "meta": "Netflix · 2024 · Needs analysis & localization", "title": "Localized eLearnings for Japan, Korea and Thailand", "tag": "Needs analysis & localization", "script": "Netflix built a tool to track the cost of every VFX shot with data from tens of thousands of shots over four years, but teams in Japan, Korea and Thailand had not adopted it. They already had processes that worked, and Netflix doesn't mandate process. So I flew out to their offices and listened first. In Japan, shows often don't run in the same seasons as in Hollywood. In Korea, teams lived in advanced Google Sheets and created their own advanced trackers. I came back and built eight eLearnings, one for production users and one for studio users in English, Japanese, Korean and Thai, with each region's real workflow built in, not just translated. The data showed the courses were popular, and the tool is still in use today in all three regions.", "needed": "Teams in Japan, Korea and Thailand already had processes that worked, and Netflix doesn't mandate process.", "designed": "I listened on-site first, then built role-based eLearnings in Articulate Storyline for production and studio users, in four languages, with each region's real workflow built in.", "changed": "Korea adopted first, then Japan and Thailand. LMS data showed strong engagement, and the tool is still in use.", "metrics": ["8 eLearnings", "4 languages", "2 learner roles", "3 regions adopted"], "dur": 44.27, "video": "video/scene-2.mp4?v=2e1c4ce6", "audio": "audio/scene-2.mp3?v=f4bbb616"}, {"button": "Just-in-time onboarding for new CSMs", "meta": "Box · 2025 · Just-in-time learning with AI", "title": "Just-in-time onboarding for new CSMs", "tag": "Just-in-time learning with AI", "script": "When I joined Box, I gave honest feedback on the onboarding eLearnings, and the training team asked me to help fix them. My big idea: stop trying to teach new hires everything. It overwhelms people, and most of it doesn't stick. Instead, teach what they need on day one, then teach them how to find the rest. In a one-hour instructor-led session, I showed new Customer Success Managers how to use AI to search our SOPs and get answers in the moment, just in time. I led those sessions every month for about a dozen new hires. They ramped up with more confidence, and the process is still in use today.", "needed": "New Customer Success Managers were trying to learn everything up front. It overwhelmed them, and most of it didn't stick.", "designed": "A one-hour instructor-led session that teaches only the day-one essentials, plus how to use AI to search SOPs for answers in the moment.", "changed": "About a dozen new CSMs ramped up with more confidence, and the process is still in use today.", "metrics": ["~12 new CSMs onboarded", "1-hour ILT", "Nationwide program", "Still in use"], "dur": 35.47, "video": "video/scene-3.mp4?v=89f13d2d", "audio": "audio/scene-3.mp3?v=112fce2d"}, {"button": "Box 101 & 201 for The TEAM", "meta": "Box · 2026 · Audience-tailored ILT", "title": "Box 101 & 201 for The TEAM", "tag": "Audience-tailored ILT", "script": "The TEAM, a talent agency and one of Box's oldest customers, had just bought Box's top tier, with AI agents and automations, and their SVP of IT asked me to train their people. I split it into Box 101 for the basics and 201 for the advanced features. Instead of a generic demo, I built it around their world: I role played as Maxx Crosby's agent, with a demo account full of sponsorships and press. After the training, I ran a three-hour help desk over lunch and debriefed with IT. They added my recording to their LMS, had me repeat the program for their East Coast and London teams, and went from having launched just two AI agents to a growing backlog of more than fifty requests from excited users.", "needed": "A long-time customer bought Box's top tier, with AI agents and automations, and their people needed to actually use it.", "designed": "Box 101 for the basics and 201 for AI agents and automations, built around a role-play demo as Maxx Crosby's agent, then a 3-hour help desk and an IT debrief.", "changed": "My recording went into their LMS, they had me repeat it for East Coast and London, and AI agents went from 2 to a backlog of 50+ requests.", "metrics": ["2 → 50+ AI agent requests", "Added to client LMS", "3 offices trained", "2-hr ILT + 3-hr help desk"], "dur": 41.93, "video": "video/scene-4.mp4?v=190ac11c", "audio": "audio/scene-4.mp3?v=8cb9964e"}, {"button": "Rolling out the red carpet for Workshop Portal", "meta": "Netflix · 2022 · Launch experience", "title": "Rolling out the red carpet for Workshop Portal", "tag": "Launch experience", "script": "At Netflix Animation, we built Workshop Portal, the new home for artists to submit work for review and approval, and a cornerstone that future tools would be built on. A launch that important needed more than an email, so I threw a launch party. I set up hands-on demo stations where artists met the engineers who built the tool, catered it, and timed it with a screening of Guillermo del Toro's Pinocchio. About a hundred people came, leadership loved it, and new productions adopted Workshop Portal strongly, with some shows already in production switching over too. This party showed me that adoption is a funnel that starts with awareness.", "needed": "A cornerstone review-and-approval app for Netflix Animation artists needed a launch that matched its importance.", "designed": "A launch event with hands-on demo stations where artists met the engineers, timed with a screening of Guillermo del Toro's Pinocchio.", "changed": "About 100 people came, leadership loved it, and new productions adopted strongly, with in-flight shows switching over too.", "metrics": ["~100 attendees", "Hands-on demo stations", "Strong adoption by new productions"], "dur": 36.27, "video": "video/scene-5.mp4?v=f6f3ce1f", "audio": "audio/scene-5.mp3?v=43c70150"}, {"button": "Closing the feedback loop with UserVoice", "meta": "Netflix · 2024 · Feedback loops at scale", "title": "Closing the feedback loop with UserVoice", "tag": "Feedback loops at scale", "script": "Across Netflix's studio apps, every product manager collected feedback differently, and nobody closed the loop with users. As the lead for UserVoice, I worked with more than a dozen product managers over six months to standardize it and roll it out. We landed on four different paths for integrations that covered all applications, and I tracked every rollout along the way in Monday.com. In the first year, we captured more than three thousand pieces of user feedback, and teams shifted from building what they assumed users wanted to building what users actually voted for. Also, this feedback easily highlighted training gaps which we fixed with Job Aids and WalkMe.", "needed": "Every product manager collected feedback differently, and users never heard back about their requests.", "designed": "Standardized feedback across studio apps with 12+ product managers, using four integration patterns, and tracked every rollout.", "changed": "3,000+ pieces of feedback in year one. Roadmaps shifted to what users voted for, and the feedback exposed training gaps we closed with job aids and WalkMe.", "metrics": ["3,000+ pieces of feedback", "12+ product teams", "6-month rollout", "Training gaps fixed with job aids & WalkMe"], "dur": 37.47, "video": "video/scene-6.mp4?v=6a5a9d50", "audio": "audio/scene-6.mp3?v=8d7456b8"}, {"button": "Getting Hollywood studios to say yes to AI", "meta": "Box · 2025–2026 · User research & change management", "title": "Getting Hollywood studios to say yes to AI", "tag": "User research & change management", "script": "In Hollywood, AI is a loaded word. At Box, AI features only turned on after a customer signed an AI addendum, and every studio's legal and security teams worried about content leaks and training on their data. So I didn't lead with security. I led with the users. I ran user interviews, more than thirty at Amazon MGM Studios alone, and built a library of real use cases. When I sat down with the heads of legal and InfoSec, I was showing them what their own people were asking for. Warner Bros., Amazon MGM Studios, Sony Pictures, The TEAM and UTA all signed, starting with careful pilot rollouts.", "needed": "Studios saw AI as a risk to their content and data, and legal and InfoSec had to sign off before anyone could use it.", "designed": "I led with demand: 30+ user interviews at Amazon MGM Studios and a library of real use cases, before I ever met with legal and InfoSec.", "changed": "Warner Bros., Amazon MGM Studios, Sony Pictures, The TEAM and UTA all signed, starting with phased pilots of under 50 users.", "metrics": ["5 studios & agencies signed", "30+ user interviews", "Phased pilots (<50 users)"], "dur": 38.5, "video": "video/scene-7.mp4?v=339c03fb", "audio": "audio/scene-7.mp3?v=7f7b764a"}, {"button": "Teaching with video", "meta": "Post-production · Netflix · Video production", "title": "Teaching with video", "tag": "Video production", "youtube": true, "script": "Video is where my career started. I spent my early years in TV post-production on more than a hundred episodes, and I even ran a website teaching Final Cut Pro workflows to editors around the world. At Netflix, I put that to work. I made dozens of videos, some to train people on new tools step by step, and some to build excitement before a launch. I'm comfortable on either side of the camera: writing, shooting, editing or presenting. And I'm excited about what AI is doing for video. You're watching an example right now. This avatar and my voice are AI generated, so I can make updates in minutes instead of reshooting it, which was a big problem for me at Netflix. You'll find some of my Netflix videos on YouTube, linked right below.", "metrics": ["100+ TV episodes in post-production", "Dozens of training & launch videos at Netflix", "Founded a Final Cut Pro training site", "Comfortable on camera and behind it"], "dur": 42.0, "video": "video/scene-8.mp4?v=a2a56476", "audio": "audio/scene-8.mp3?v=89126051"}, {"button": "Learn more", "meta": "Resume · LinkedIn · Netflix videos", "title": "Let's keep talking", "tag": "", "script": "Thanks for checking this out! You can download my resume, connect with me on LinkedIn, or email me right below. I'm also including a link to some of the videos I created while at Netflix. Thanks for watching, and I hope you and the real me get to talk soon.", "dur": 13.37, "video": "video/scene-10.mp4?v=4c2f36e1", "audio": "audio/scene-10.mp3?v=71a8d875"}];
+const RESUME = "Morgan_Swift_Resume_Instructional_Designer.pdf";
+const $ = (id) => document.getElementById(id);
+const pad = (n) => String(n).padStart(2, "0");
+const fmt = (s) => `${Math.floor(s / 60)}:${pad(Math.floor(s % 60))}`;
+const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const LEARN = SCENES.length - 1;
+const vid = $("vid");
+const audio = new Audio(); audio.preload = "none";
+let cur = 0, playing = false, useAudio = false, done = new Set();
+const media = () => (useAudio ? audio : vid);
+
+function renderMenu() {
+  $("menu").innerHTML = SCENES.map((s, i) => {
+    const cls = i === 0 ? "story start" : i === LEARN ? "story learn" : "story";
+    const n = i === 0 ? "▶" : i === LEARN ? "→" : pad(i);
+    const live = i === cur && playing ? '<span class="eq"><i></i><i></i><i></i></span>' : "";
+    const d = `${done.has(i) ? '<span class="ok">✓</span> ' : ""}${fmt(s.dur || 40)}`;
+    return `<button class="${cls}" type="button" data-i="${i}" ${i === cur ? 'aria-current="true"' : ""}><span class="prog"></span><span class="n">${n}</span><span><span class="t">${live}${esc(s.button)}</span><span class="m">${esc(s.meta)}</span></span><span class="d">${d}</span></button>`;
+  }).join("");
+}
+$("menu").addEventListener("click", (e) => { const b = e.target.closest(".story"); if (b) go(+b.dataset.i); });
+
+function setSource(i) {
+  const s = SCENES[i];
+  // The intro shows a still of its calm last frame until played; other stories show their opening frame.
+  vid.poster = i === 0 ? "metropolis/intro-poster-metropolis.jpg?v=f757d88f" : "";
+  vid.preload = "auto"; // fetch the whole selected story up front so it doesn't stop to buffer
+  vid.src = s.video; audio.src = s.audio; // no "#t=" time jumps: Safari handles plain sources most reliably
+  $("slateScene").textContent = pad(i); $("slateOrg").textContent = s.meta.split(" · ").slice(0, 2).join(" · ");
+}
+async function start() {
+  $("bigPlay").hidden = true; playing = true; updateUI();
+  try { await media().play(); }
+  catch (e) {
+    if (e && e.name === "AbortError") return;            // a newer click replaced this play request: not a failure
+    if (e && e.name === "NotAllowedError") { playing = false; updateUI(); $("bigPlay").hidden = false; return; } // browser wants a tap first
+    if (!useAudio) { useAudio = true; try { await audio.play(); } catch (_) { playing = false; updateUI(); } } else { playing = false; updateUI(); }
+  }
+}
+function pause() { playing = false; media().pause(); updateUI(); }
+function go(i) {
+  playing = false; vid.pause(); audio.pause(); cur = i; setSource(i); start();
+}
+function ended() { playing = false; $("loading").hidden = true; done.add(cur); updateUI(); }
+vid.addEventListener("ended", ended); audio.addEventListener("ended", ended);
+// Fall back to audio only for real video errors (unsupported or undecodable), never for interrupted loads.
+vid.addEventListener("error", () => { const c = vid.error && vid.error.code; if (!useAudio && (c === 3 || c === 4)) { useAudio = true; if (playing) { audio.currentTime = vid.currentTime || 0; audio.play().catch(() => {}); } } });
+// Buffering: show "Loading…", and if the connection stalls for 8 seconds, reconnect and continue from the same spot.
+let stallTimer = 0;
+vid.addEventListener("waiting", () => { if (!playing) return; $("loading").hidden = false; clearTimeout(stallTimer);
+  stallTimer = setTimeout(() => { if (playing && vid.readyState < 3) { const t = vid.currentTime; vid.load(); vid.currentTime = t; vid.play().catch(() => {}); } }, 8000); });
+["playing", "canplay", "seeked"].forEach((e) => vid.addEventListener(e, () => { $("loading").hidden = true; clearTimeout(stallTimer); }));
+// If the browser pauses the video on its own while the page is visible (not the viewer), resume it.
+vid.addEventListener("pause", () => { if (playing && !vid.ended && document.visibilityState === "visible") setTimeout(() => { if (playing && vid.paused && !vid.ended) vid.play().catch(() => {}); }, 300); });
+
+function updateUI() {
+  $("stage").classList.toggle("playing", playing);
+  $("play").setAttribute("aria-label", playing ? "Pause" : "Play");
+  $("playIcon").innerHTML = playing ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+  renderMenu();
+}
+function tick() {
+  const m = media(), d = m.duration || SCENES[cur].dur || 0, t = m.currentTime || 0, p = d ? Math.min(1, t / d) : 0;
+  $("fill").style.width = `${p * 100}%`; $("bar").setAttribute("aria-valuenow", Math.round(p * 100));
+  $("tc").textContent = `${fmt(t)} / ${fmt(d)}`;
+  const pr = document.querySelector('.story[aria-current="true"] .prog'); if (pr) pr.style.width = `${p * 100}%`;
+  requestAnimationFrame(tick);
+}
+$("bigPlay").onclick = () => start();
+$("play").onclick = () => (playing ? pause() : start());
+function seek(f) { const m = media(); if (m.duration) m.currentTime = Math.max(0, Math.min(1, f)) * m.duration; }
+$("bar").addEventListener("click", (e) => { const r = $("bar").getBoundingClientRect(); seek((e.clientX - r.left) / r.width); });
+$("bar").addEventListener("keydown", (e) => { const m = media(); if (!m.duration) return; const step = 5 / m.duration, p = m.currentTime / m.duration;
+  if (e.key === "ArrowRight") { seek(p + step); e.preventDefault(); } if (e.key === "ArrowLeft") { seek(p - step); e.preventDefault(); } });
+
+let downloads = null;
+(async () => { try { downloads = await window.claude?.use?.("downloads"); } catch (e) { downloads = null; } })();
+$("resumeBtn").onclick = async () => { const note = $("resumeNote");
+  if (!window.claude) { // on the public website: a normal file download
+    const a = document.createElement("a"); a.href = RESUME; a.download = RESUME; document.body.appendChild(a); a.click(); a.remove(); return; }
+  if (!downloads) { note.hidden = false; note.textContent = "Downloads aren't available in this view. Email me and I'll send my resume right away."; return; }
+  try { const blob = await (await fetch(RESUME)).blob(); await downloads.save({ filename: RESUME, data: blob }); note.hidden = true; }
+  catch (e) { if (e && e.code === "declined") return; note.hidden = false; note.textContent = "The download didn't start. Email me and I'll send my resume right away."; } };
+
+setSource(0); renderMenu(); requestAnimationFrame(tick);
+
+// Diagnostics, only when the page is opened with ?debug — shows what the browser does with the video.
+if (/[?&]debug\b/.test(location.search)) {
+  const box = document.createElement("pre");
+  box.style.cssText = "position:fixed;right:8px;bottom:8px;z-index:99;max-width:min(560px,95vw);max-height:45vh;overflow:auto;margin:0;padding:10px;background:rgba(0,0,0,.85);color:#9f9;font:11px/1.4 ui-monospace,Menlo,monospace;border-radius:10px;white-space:pre-wrap";
+  document.body.appendChild(box);
+  const t0 = performance.now(), lines = [];
+  const buf = () => { const b = vid.buffered; return b.length ? `${b.start(0).toFixed(1)}-${b.end(b.length - 1).toFixed(1)}s` : "none"; };
+  const log = (msg) => { lines.push(`${((performance.now() - t0) / 1000).toFixed(1)}s ${msg}`); box.textContent = navigator.userAgent.replace(/^Mozilla\/5.0 /, "") + "\n" + lines.slice(-40).join("\n"); box.scrollTop = box.scrollHeight; };
+  ["loadstart", "loadedmetadata", "canplay", "canplaythrough", "play", "playing", "pause", "waiting", "stalled", "suspend", "ended", "error", "abort", "emptied"].forEach((e) =>
+    vid.addEventListener(e, () => log(`${e.padEnd(14)} t=${vid.currentTime.toFixed(1)} ready=${vid.readyState} net=${vid.networkState} buf=${buf()} ${vid.error ? "err=" + vid.error.code : ""} ${(vid.currentSrc || "").split("/").pop()}`)));
+  document.addEventListener("visibilitychange", () => log("page " + document.visibilityState));
+  const origPlay = HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play = function () { const p = origPlay.call(this); p && p.catch((e) => log(`play() rejected: ${e.name}`)); return p; };
+  log("debug on");
+}
+</script>
+
+</body>
+</html>
